@@ -3,6 +3,8 @@
 
 ## Description ## 
 
+
+
 ## Demo (images, links, live demos) ##
 
 
@@ -10,8 +12,7 @@
 Postgres, Express, React, Node stack; heroku; Cypress, Foundation;
 
 ## Special Gotchas (problems faced, unique elements) ##
-We ran into issues getting Foundation to show the grid properly.
-By updating our index pages to adjust the displayed objects based on the size of the screen we set up how many columns we want to display.
+
 ## Technical Description (installation, setup, how to contribute) ##
 1. yarn install
 2. cd server
