@@ -1,4 +1,4 @@
-const getCurrentUser = () => {
+const getCurrentUser = async () => {
   return fetch("/api/v1/user-sessions/current", {
     method: "get",
     headers: new Headers({
