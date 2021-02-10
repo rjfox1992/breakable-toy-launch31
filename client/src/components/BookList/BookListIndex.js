@@ -20,9 +20,11 @@ const BookListIndex = (props) => {
       console.error(`Error in fetch: ${err.message}`);
     }
   };
+
   useEffect(() => {
     getBookLists();
   }, []);
+
   const bookListItems = bookLists.map((bookList) => {
     return (
       <BookListTile
