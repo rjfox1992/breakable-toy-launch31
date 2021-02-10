@@ -18,7 +18,7 @@ class BookList extends Model {
   }
 
   static get relationMappings() {
-    const { User } = require("./index.js");
+    const { Book, User } = require("./index.js");
     return {
       user: {
         relation: Model.BelongsToOneRelation,
@@ -26,6 +26,14 @@ class BookList extends Model {
         join: {
           from: "bookLists.userId",
           to: "users.id",
+        },
+      },
+      books: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Book,
+        join: {
+          from: "booklists.bookId",
+          to: "books.id",
         },
       },
     };
