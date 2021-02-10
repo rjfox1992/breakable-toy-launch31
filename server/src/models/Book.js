@@ -20,11 +20,11 @@ class Book extends Model {
     const { BookList, User } = require("./index.js");
 
     return {
-      booklist: {
+      bookList: {
         relation: Model.BelongsToOneRelation,
         modelClass: BookList,
         join: {
-          from: "books.booklistId",
+          from: "books.bookListId",
           to: "booklists.id",
         },
       },
