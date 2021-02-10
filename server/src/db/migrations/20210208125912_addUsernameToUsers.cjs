@@ -15,8 +15,7 @@ exports.up = async (knex) => {
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  "users",
-    (table) => {
-      table.dropColumn("username");
-    };
+  return knex.schema.table("users", (table) => {
+    table.dropColumn("username");
+  });
 };

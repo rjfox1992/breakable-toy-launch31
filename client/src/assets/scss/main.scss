@@ -12,3 +12,31 @@
   -moz-tab-size: 4;
   tab-size: 4;
 }
+
+.card {
+  width: 300px;
+  margin: 30px auto;
+  background-color: #d7ecfa;
+  text-align: center !important;
+  opacity: 0.85;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+}
+
+.BookList-name {
+  font-size: 4vw;
+  opacity: 100%;
+  font-weight: bold;
+  background: rgba(226, 226, 226, 0.75);
+}
+
+.BookList-tile {
+  width: 20vw;
+  height: 20vw;
+  background-color: white;
+}
