@@ -2,4 +2,5 @@
 const User = require("./User.js");
 const BookList = require("./BookList.js");
 const Book = require("./Book.js");
-module.exports = { User, BookList, Book };
+const BookFavorites = require("./BookFavorites.js");
+module.exports = { User, BookList, Book, BookFavorites };

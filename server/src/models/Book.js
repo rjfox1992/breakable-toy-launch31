@@ -17,15 +17,19 @@ class Book extends Model {
   }
 
   static get relationMappings() {
-    const { BookList, User } = require("./index.js");
+    const { BookList, BookFavorites, User } = require("./index.js");
 
     return {
-      bookList: {
-        relation: Model.BelongsToOneRelation,
+      bookLists: {
+        relation: Model.ManyToManyRelation,
         modelClass: BookList,
         join: {
-          from: "books.bookListId",
-          to: "booklists.id",
+          from: "books.id",
+          through: {
+            from: "bookFavorites.bookId",
+            to: "bookFavorites.bookListId",
+          },
+          to: "bookLists.id",
         },
       },
 
@@ -35,6 +39,18 @@ class Book extends Model {
         join: {
           from: "books.userId",
           to: "users.id",
+        },
+      },
+      bookFavorites: {
+        relation: Model.ManyToManyRelation,
+        modelClass: BookFavorites,
+        join: {
+          from: "books.id",
+          through: {
+            from: "bookFavorites.bookListId",
+            to: "bookFavorites.bookId",
+          },
+          to: "bookLists.id",
         },
       },
     };

@@ -15,6 +15,7 @@ BooksRouter.get("/", async (req, res) => {
       const serializedBook = await BookSerializer.getSummary(Book);
       serializedBooks.push(serializedBook);
     }
+
     return res.status(200).json({ books: serializedBooks });
   } catch (error) {
     return res.status(500).json({ error: error });
