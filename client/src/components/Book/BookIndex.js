@@ -8,12 +8,15 @@ const BookIndex = (props) => {
   const getBooks = async () => {
     try {
       const response = await fetch(`/api/v1/books`);
+
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
         const error = new Error(errorMessage);
         throw error;
       }
+
       const bookData = await response.json();
+
       setBooks(bookData.books);
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
@@ -25,8 +28,10 @@ const BookIndex = (props) => {
   }, []);
 
   const bookItems = books.map((book) => {
-    return <BookTile key={book.id} book={book} user={props.user} username={props.username} />;
+    debugger;
+    return <BookTile key={book.id} book={book} />;
   });
+  debugger;
 
   return (
     <div className="grid-container">

@@ -11,6 +11,6 @@ rootRouter.use("/api/v1/user-sessions", userSessionsRouter);
 rootRouter.use("/api/v1/users", usersRouter);
 //place your server-side routes here
 rootRouter.use("/api/v1/bookLists", BookListRouter);
-rootRouter.use("api/v1/books", BooksRouter);
+rootRouter.use("/api/v1/books", BooksRouter);
 
 export default rootRouter;
