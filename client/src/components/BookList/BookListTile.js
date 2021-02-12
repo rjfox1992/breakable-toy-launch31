@@ -12,7 +12,7 @@ const BookListTile = ({ bookList, user }) => {
   return (
     <div className="cell">
       <div className="card text-center BookList-tile" style={divStyle}>
-        <Link to={`/userBookList/${bookList.id}`}>
+        <Link to={`/BookLists/${bookList.id}`}>
           <div className="BookList-name">{bookList.name}</div>
         </Link>
       </div>

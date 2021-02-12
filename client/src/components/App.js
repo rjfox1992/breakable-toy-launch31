@@ -8,7 +8,8 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import BookListIndex from "./BookList/BookListIndex.js";
-
+import BookIndex from "./Book/BookIndex.js";
+import BookListShowPage from "./BookList/BookListShowPage.js";
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
@@ -31,6 +32,12 @@ const App = (props) => {
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/bookLists">
           <BookListIndex />
+        </Route>
+        <Route exact path="/bookLists/:id">
+          <BookListShowPage />
+        </Route>
+        <Route exact path="/books">
+          <BookIndex />
         </Route>
       </Switch>
     </Router>

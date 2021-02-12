@@ -20,4 +20,17 @@ BookListRouter.get("/", async (req, res) => {
     return res.status(500).json({ error: error });
   }
 });
+
+BookListRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const bookList = await BookList.query().findById(id);
+    const serializedBookList = await BookListSerializer.getSummary(bookList);
+
+    return res.status(200).json({ bookList: serializedBookList });
+  } catch (err) {
+    return res.status(500).json({ err });
+  }
+});
+
 export default BookListRouter;

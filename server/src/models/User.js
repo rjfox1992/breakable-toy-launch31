@@ -36,7 +36,7 @@ class User extends uniqueFunc(Model) {
     };
   }
   static get relationMappings() {
-    const { BookList } = require("./index.js");
+    const { BookList, Book } = require("./index.js");
     return {
       bookLists: {
         relation: Model.HasManyRelation,
@@ -44,6 +44,14 @@ class User extends uniqueFunc(Model) {
         join: {
           from: "users.id",
           to: "bookLists.userId",
+        },
+      },
+      books: {
+        relation: Model.HasManyRelation,
+        modelClass: Book,
+        join: {
+          from: "users.id",
+          to: "books.userId",
         },
       },
     };
