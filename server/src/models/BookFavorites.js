@@ -21,20 +21,20 @@ class BookFavorites extends Model {
 
     return {
       books: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: Book,
         join: {
-          from: "books.id",
-          to: "bookFavorites.bookId",
+          from: "bookFavorites.bookId",
+          to: "books.id",
         },
       },
 
       bookLists: {
-        relation: Model.HasManyRelation,
+        relation: Model.BelongsToOneRelation,
         modelClass: BookList,
         join: {
-          from: "bookLists.id",
-          to: "bookFavorites.bookListId",
+          from: "bookFavorites.bookListId",
+          to: "bookLists.id",
         },
       },
     };

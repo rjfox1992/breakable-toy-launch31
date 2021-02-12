@@ -4,9 +4,9 @@ const { ValidationError } = objection;
 import { Book } from "../../../models/index.js";
 import BookSerializer from "../../../serializers/BookSerializer.js";
 
-const BooksRouter = new express.Router();
+const bookRouter = new express.Router();
 
-BooksRouter.get("/", async (req, res) => {
+bookRouter.get("/", async (req, res) => {
   try {
     const books = await Book.query();
     const serializedBooks = [];
@@ -21,4 +21,15 @@ BooksRouter.get("/", async (req, res) => {
     return res.status(500).json({ error: error });
   }
 });
-export default BooksRouter;
+
+bookRouter.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const book = await Book.query().findById(id);
+    const serializedBook = await BookSerializer.getSummary(book);
+    return res.status(200).json({ book: serializedBook });
+  } catch (err) {
+    return res.status(500).json({ err });
+  }
+});
+export default bookRouter;

@@ -11,7 +11,7 @@ class Book extends Model {
       required: ["title", "author"],
       properties: {
         title: { type: "string", minLength: 1 },
-        Author: { type: "string", minLength: 1 },
+        author: { type: "string", minLength: 1 },
       },
     };
   }
@@ -42,15 +42,11 @@ class Book extends Model {
         },
       },
       bookFavorites: {
-        relation: Model.ManyToManyRelation,
+        relation: Model.HasManyRelation,
         modelClass: BookFavorites,
         join: {
           from: "books.id",
-          through: {
-            from: "bookFavorites.bookListId",
-            to: "bookFavorites.bookId",
-          },
-          to: "bookLists.id",
+          to: "bookFavorites.bookId",
         },
       },
     };
