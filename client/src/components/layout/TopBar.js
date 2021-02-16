@@ -18,6 +18,16 @@ const TopBar = ({ user }) => {
     <li key="sign-out">
       <SignOutButton />
     </li>,
+    <li key="add-book">
+      <Link to="/books/new" type="button" className="button">
+        Add Book
+      </Link>
+    </li>,
+    <li key="add-bookList">
+      <Link to="/bookLists/new" type="button" className="button">
+        Add BookList
+      </Link>
+    </li>,
   ];
 
   return (

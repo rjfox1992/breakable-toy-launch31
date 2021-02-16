@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import BookTile from "../Book/BookTile.js";
-import BookListIndex from "../BookList/BookListIndex.js";
+
 const showBooksBookList = (props) => {
   const [books, setBooks] = useState([]);
   const [bookListName, setBookListName] = useState("");
@@ -10,8 +10,7 @@ const showBooksBookList = (props) => {
 
   const getBookListName = async () => {
     try {
-      const response = await fetch(`/api/v1/bookLists`);
-      debugger;
+      const response = await fetch(`/api/v1/bookLists/${bookListId}`);
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;
         const error = new Error(errorMessage);
@@ -19,40 +18,19 @@ const showBooksBookList = (props) => {
       }
 
       const bookListData = await response.json();
-      bookListData.bookLists.forEach((bookLists) => {
-        if (bookListId === bookLists.id) {
-          return setBookListName(bookLists.name);
-        }
-      });
-    } catch (err) {
-      console.error(`Error in fetch: ${err.message}`);
-    }
-  };
-  const getBooks = async () => {
-    try {
-      const response = await fetch(`/api/v1/books`);
-
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
-      }
-
-      const body = await response.json();
-
-      setBooks(body.books);
+      setBookListName(bookListData.bookList.name);
+      setBooks(bookListData.bookList.books);
     } catch (err) {
       console.error(`Error in fetch: ${err.message}`);
     }
   };
 
   useEffect(() => {
-    getBooks();
     getBookListName();
   }, []);
 
-  const getBookList = books.map((book) => {
-    if (book.bookListId === bookListId) {
+  const bookTiles = books.map((book) => {
+    {
       return <BookTile key={book.id} book={book} user={props.user} bookListId={book.bookListId} />;
     }
   });
@@ -61,7 +39,7 @@ const showBooksBookList = (props) => {
     <div className="grid-container">
       <h1>{bookListName}</h1>
       <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-2">
-        <ul>{getBookList}</ul>
+        <ul>{bookTiles}</ul>
       </div>
     </div>
   );

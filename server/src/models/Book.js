@@ -12,6 +12,7 @@ class Book extends Model {
       properties: {
         title: { type: "string", minLength: 1 },
         author: { type: "string", minLength: 1 },
+        userId: { type: ["integer, string"] },
       },
     };
   }

@@ -32,7 +32,7 @@ class BookList extends Model {
         relation: Model.ManyToManyRelation,
         modelClass: Book,
         join: {
-          from: "booklists.id",
+          from: "bookLists.id",
           through: {
             from: "bookFavorites.bookListId",
             to: "bookFavorites.bookId",
@@ -41,15 +41,11 @@ class BookList extends Model {
         },
       },
       bookFavorites: {
-        relation: Model.ManyToManyRelation,
+        relation: Model.HasManyRelation,
         modelClass: BookFavorites,
         join: {
-          from: "booklists.id",
-          through: {
-            from: "bookFavorites.bookListId",
-            to: "bookFavorites.bookId",
-          },
-          to: "books.id",
+          from: "bookLists.id",
+          to: "bookFavorites.bookListId",
         },
       },
     };
