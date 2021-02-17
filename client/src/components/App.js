@@ -10,6 +10,9 @@ import TopBar from "./layout/TopBar";
 import BookListIndex from "./BookList/BookListIndex.js";
 import BookIndex from "./Book/BookIndex.js";
 import BookListShowPage from "./BookList/BookListShowPage.js";
+import BookForm from "./Book/BookForm.js";
+import BookListForm from "./BookList/BookListForm.js";
+
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
@@ -26,19 +29,27 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>Hello from react</h2>
+          <h2>BookMarked: Organize Your Reading</h2>
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/bookLists">
           <BookListIndex />
         </Route>
+        <AuthenticatedRoute
+          exact
+          path="/bookLists/new"
+          user={currentUser}
+          component={BookListForm}
+        />
         <Route exact path="/bookLists/:id">
           <BookListShowPage />
         </Route>
+
         <Route exact path="/books">
           <BookIndex />
         </Route>
+        <AuthenticatedRoute exact path="/books/new" component={BookForm} user={currentUser} />
       </Switch>
     </Router>
   );

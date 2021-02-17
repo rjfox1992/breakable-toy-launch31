@@ -1,10 +1,10 @@
 import express from "express";
 import objection from "objection";
 const { ValidationError } = objection;
-import { Book } from "../../../models/index.js";
+import { Book, BookFavorites } from "../../../models/index.js";
 import BookSerializer from "../../../serializers/BookSerializer.js";
-
-const bookRouter = new express.Router();
+import cleanUserInput from "../../../services/cleanUserInput.js";
+const bookRouter = new express.Router({ mergeParams: true });
 
 bookRouter.get("/", async (req, res) => {
   try {
@@ -28,8 +28,35 @@ bookRouter.get("/:id", async (req, res) => {
     const book = await Book.query().findById(id);
     const serializedBook = await BookSerializer.getSummary(book);
     return res.status(200).json({ book: serializedBook });
-  } catch (err) {
-    return res.status(500).json({ err });
+  } catch (error) {
+    return res.status(500).json({ error });
+  }
+});
+
+bookRouter.post("/", async (req, res) => {
+  const { body } = req;
+  const formInput = cleanUserInput(body);
+  const { title, author } = formInput;
+  const bookListId = req.body.bookListsId;
+  const userId = req.user.id;
+  debugger;
+  try {
+    const newBook = await Book.query().insertAndFetch({ title, author, userId });
+    const bookId = newBook.id;
+    console.log(newBook);
+    const serializedBook = await BookSerializer.getSummary(newBook);
+    console.log(serializedBook);
+    const newBookFavorite = await BookFavorites.query().insertAndFetch({ bookId, bookListId });
+    console.log(newBookFavorite);
+    debugger;
+    return res.status(201).json({ book: serializedBook, newBookFavorite });
+  } catch (error) {
+    console.log(error);
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data });
+    }
+    // debugger;
+    return res.status(500).json({ errors: error });
   }
 });
 export default bookRouter;
