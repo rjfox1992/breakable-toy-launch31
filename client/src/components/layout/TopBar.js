@@ -34,7 +34,9 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">BookMarked</li>
+          <li className="menu-text">
+            <i className="fas fa-book fa-lg"></i>BookMarked
+          </li>
           <li>
             <Link to="/">Home</Link>
           </li>

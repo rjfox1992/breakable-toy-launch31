@@ -4,6 +4,7 @@ import usersRouter from "./api/v1/usersRouter.js";
 import clientRouter from "./clientRouter.js";
 import bookListRouter from "./api/v1/BookListRouter.js";
 import bookRouter from "./api/v1/bookRouter.js";
+import googleBooksRouter from "./api/v1/googleBooksRouter.js";
 const rootRouter = new express.Router();
 rootRouter.use("/", clientRouter);
 
@@ -12,5 +13,5 @@ rootRouter.use("/api/v1/users", usersRouter);
 //place your server-side routes here
 rootRouter.use("/api/v1/bookLists", bookListRouter);
 rootRouter.use("/api/v1/books", bookRouter);
-
+rootRouter.use("/api/v1/googleSearch", googleBooksRouter);
 export default rootRouter;
