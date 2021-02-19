@@ -8,11 +8,12 @@ const clientRoutes = [
   "/user-sessions/new",
   "/users/new",
   "/bookLists",
-  "/bookLists/:id",
+  "/googleSearch",
   "/bookLists/new",
+  "/bookLists/:id",
   "/books",
-  "/books/:id",
   "/books/new",
+  "/books/:id",
 ];
 router.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath());

@@ -49,9 +49,13 @@ img {
 }
 
 .BookList-tile {
-  width: 20vw;
-  height: 20vw;
-  background-color: white;
+  width: 20vw auto;
+  height: 20vw auto;
+}
+.Book-tile {
+  width: 20vw auto;
+  height: 20vw auto;
+  border-radius: 5%;
 }
 
 #new-book-form {

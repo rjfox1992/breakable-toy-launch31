@@ -34,9 +34,7 @@ const BookIndex = (props) => {
   return (
     <div className="grid-container">
       <h1 className="header">Books</h1>
-      <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
-        <ul>{bookItems}</ul>
-      </div>
+      <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">{bookItems}</div>
     </div>
   );
 };

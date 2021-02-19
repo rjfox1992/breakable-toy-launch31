@@ -83,7 +83,7 @@ const BookListForm = (props) => {
             value={bookListRecord.name || ""}
           />
 
-          <label htmlFor="imageUrl">Book ImageUrl:</label>
+          <label htmlFor="imageUrl">Booklist ImageUrl:</label>
           <input
             type="text"
             name="imageUrl"

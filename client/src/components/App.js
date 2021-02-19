@@ -12,7 +12,8 @@ import BookIndex from "./Book/BookIndex.js";
 import BookListShowPage from "./BookList/BookListShowPage.js";
 import BookForm from "./Book/BookForm.js";
 import BookListForm from "./BookList/BookListForm.js";
-
+import googleBookSearch from "./Book/googleBookSearch.js";
+import HomePage from "./layout/HomePage.js";
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
@@ -29,7 +30,7 @@ const App = (props) => {
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <h2>BookMarked: Organize Your Reading</h2>
+          <HomePage />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
@@ -50,6 +51,7 @@ const App = (props) => {
           <BookIndex />
         </Route>
         <AuthenticatedRoute exact path="/books/new" component={BookForm} user={currentUser} />
+        <Route exact path="/googleSearch" component={googleBookSearch} />
       </Switch>
     </Router>
   );
