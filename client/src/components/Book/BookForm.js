@@ -7,6 +7,7 @@ const BookForm = (props) => {
   const [bookRecord, setBookRecord] = useState({
     title: "",
     author: "",
+    imageUrl: "",
     bookList: "",
   });
   const [bookLists, setBookLists] = useState([]);
@@ -118,6 +119,15 @@ const BookForm = (props) => {
             id="author"
             onChange={handleInputChange}
             value={bookRecord.author || ""}
+          />
+
+          <label htmlFor="imageUrl">Book Thumbnail:</label>
+          <input
+            type="text"
+            name="imageUrl"
+            id="imageUrl"
+            onChange={handleInputChange}
+            value={bookRecord.imageUrl || ""}
           />
 
           <label htmlFor="bookListsId">BookLists:</label>

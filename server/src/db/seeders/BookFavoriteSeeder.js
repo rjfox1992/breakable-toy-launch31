@@ -15,6 +15,14 @@ class BookFavoritesSeeder {
       bookListId: 3,
       bookId: 2,
     });
+    const fav4 = await BookFavorites.query().insert({
+      bookListId: 4,
+      bookId: 4,
+    });
+    const fav5 = await BookFavorites.query().insert({
+      bookListId: 5,
+      bookId: 5,
+    });
   }
 }
 export default BookFavoritesSeeder;

@@ -11,9 +11,12 @@ const BookListTile = ({ bookList, user }) => {
 
   return (
     <div className="cell">
-      <div className="card text-center BookList-tile" style={divStyle}>
+      <div className="card text-center BookList-tile">
         <Link to={`/BookLists/${bookList.id}`}>
-          <div className="BookList-name">{bookList.name}</div>
+          <div className="card-divider">{bookList.name}</div>
+          <div className="card-section">
+            <img src={bookList.imageUrl} />
+          </div>
         </Link>
       </div>
     </div>

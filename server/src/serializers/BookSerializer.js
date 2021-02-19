@@ -1,6 +1,6 @@
 class BookSerializer {
   static async getSummary(book) {
-    const allowedAttributes = ["id", "title", "author", "userId"];
+    const allowedAttributes = ["id", "title", "author", "userId", "imageUrl"];
 
     let serializedBook = {};
 
