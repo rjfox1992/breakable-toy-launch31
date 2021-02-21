@@ -5,9 +5,9 @@ import translateServerErrors from "../../services/translateServerErrors.js";
 
 const BookForm = (props) => {
   const [bookRecord, setBookRecord] = useState({
-    title: "",
-    author: "",
-    imageUrl: "",
+    title: props.value.title,
+    author: props.value.author,
+    imageUrl: props.value.imageUrl,
     bookList: "",
   });
 

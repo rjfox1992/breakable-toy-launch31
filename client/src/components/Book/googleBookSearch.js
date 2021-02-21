@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import BookFrom from "./BookForm.js";
+
 import "../../assets/scss/main.scss";
-import BookForm from "./BookForm.js";
+import AddGoogleBookForm from "./addgoogleBookForm.js";
 
 const googleBookForm = (props) => {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
 
   const [bookFormVisibility, setBookFormVisibility] = useState(false);
-
+  const [bookFormRecord, setBookFormRecord] = useState({
+    title: "",
+    author: "",
+    imageUrl: "",
+    bookList: "",
+  });
   const handleInputChange = (event) => {
     setBook(event.currentTarget.value);
   };
@@ -31,33 +36,51 @@ const googleBookForm = (props) => {
     }
   };
 
-  const bookFormClick = () => {
-    if (!bookFormVisibility) {
-      setBookFormVisibility(true);
-    } else setBookFormVisibility(false);
-    console.log(bookFormVisibility);
-  };
-
   let showBookForm = undefined;
 
   if (bookFormVisibility) {
     showBookForm = (
       <div>
-        <BookForm />
+        <AddGoogleBookForm value={bookFormRecord} />
       </div>
     );
-  }
+  } else showBookForm = undefined;
+  const fetchBookData = async (query) => {
+    try {
+      const response = await fetch(`/api/v1/googleSearch/?q=${query}`);
 
-  // if (!bookFormVisibility) {
-  //   showBookForm = undefined;
-  // }
+      if (!response.ok) {
+        throw new Error(`${response.status} (${response.statusText})`);
+      }
+      const body = await response.json();
 
+      body.googleBooksResults.items[0];
+
+      if (!body.googleBooksResults.items[0].volumeInfo.imageLinks) {
+        imageCheck = "NoImage";
+      }
+      let title = body.googleBooksResults.items[0].volumeInfo.title;
+      let author = body.googleBooksResults.items[0].volumeInfo.authors[0];
+      let imageUrl = body.googleBooksResults.items[0].volumeInfo.imageLinks.thumbnail;
+      setBookFormRecord({ ...bookFormRecord, title, author, imageUrl, bookList: "" });
+    } catch (error) {
+      console.error(`Error in fetch: ${error.message}`);
+    }
+  };
   const searchBookTiles = result.map((book) => {
     let imageCheck = <i>No image</i>;
-    // debugger;
+
     if (book.volumeInfo.imageLinks) {
       imageCheck = <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />;
     }
+    const bookFormClick = (event) => {
+      event.preventDefault();
+      if (!bookFormVisibility) {
+        const query = event.currentTarget.value;
+        fetchBookData(query);
+        setBookFormVisibility(true);
+      } else setBookFormVisibility(false);
+    };
 
     return (
       <div className="cell" key={book.id}>
@@ -74,7 +97,7 @@ const googleBookForm = (props) => {
             <h3>{book.volumeInfo.authors}</h3>
           </div>
         </div>
-        <button onClick={bookFormClick} className="button">
+        <button onClick={bookFormClick} className="button" value={book.id}>
           Add Book
         </button>
       </div>
