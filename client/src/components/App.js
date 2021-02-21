@@ -14,6 +14,8 @@ import BookForm from "./Book/BookForm.js";
 import BookListForm from "./BookList/BookListForm.js";
 import googleBookSearch from "./Book/googleBookSearch.js";
 import HomePage from "./layout/HomePage.js";
+import BookShowPage from "./Book/BookShowPage.js";
+import bookDelete from "./Book/BookDeleteButton.js";
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
@@ -25,32 +27,38 @@ const App = (props) => {
         setCurrentUser(null);
       });
   }, []);
+
   return (
     <Router>
       <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/">
-          <HomePage />
+          <HomePage user={currentUser} />
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
         <Route exact path="/bookLists">
-          <BookListIndex />
+          <BookListIndex user={currentUser} />
         </Route>
         <AuthenticatedRoute
           exact
           path="/bookLists/new"
-          user={currentUser}
           component={BookListForm}
+          user={currentUser}
         />
         <Route exact path="/bookLists/:id">
-          <BookListShowPage />
+          <BookListShowPage user={currentUser} />
         </Route>
 
         <Route exact path="/books">
-          <BookIndex />
+          <BookIndex user={currentUser} />
         </Route>
         <AuthenticatedRoute exact path="/books/new" component={BookForm} user={currentUser} />
+        <Route exact path="/books/:id">
+          <BookShowPage user={currentUser} />
+        </Route>
+
+        <Route exact path="/books/:id/delete" component={bookDelete} />
         <Route exact path="/googleSearch" component={googleBookSearch} />
       </Switch>
     </Router>

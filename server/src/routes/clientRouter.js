@@ -14,6 +14,7 @@ const clientRoutes = [
   "/books",
   "/books/new",
   "/books/:id",
+  "/books/:id/delete",
 ];
 router.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath());

@@ -26,12 +26,10 @@ bookListRouter.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const bookList = await BookList.query().findById(id);
-    debugger;
     bookList.books = await bookList.$relatedQuery("books");
-    debugger;
+
     return res.status(200).json({ bookList });
   } catch (err) {
-    debugger;
     return res.status(500).json({ err });
   }
 });

@@ -15,9 +15,16 @@
 h1 {
   text-align: center;
 }
-
+body {
+  background-color: #95d5b2;
+  background-image: url("https://i.pinimg.com/originals/1e/e5/57/1ee557ada9a4388ed1e4d4dceee1aa04.jpg");
+  background-repeat: no-repeat;
+  background-position: fill;
+  background-size: cover;
+}
 .button {
   margin: 10px;
+  border-radius: 5%;
 }
 
 .callout {
@@ -27,9 +34,9 @@ h1 {
 }
 
 .card {
-  width: 300px;
+  width: 50px auto;
   margin: 30px auto;
-  background-color: #d7ecfa;
+  background-color: #52b788;
   text-align: center !important;
   opacity: 0.85;
 }
@@ -72,4 +79,13 @@ img {
   border-width: thin;
   border-color: black;
   opacity: 1;
+}
+
+.header {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.input-field {
+  margin: 10px;
+  width: 90%;
 }

@@ -12,7 +12,7 @@ const HomePage = () => {
             <GoogleBookSearch />
           </div>
         </div>
-        <img src="https://media.istockphoto.com/photos/stack-of-books-picture-id157482029?b=1&k=6&m=157482029&s=170667a&w=0&h=me6shXpmsNsuOOrGvGFNz4ZqeIzMQtC08XWje-68qJo=" />
+        <img src="https://p.kindpng.com/picc/s/196-1965530_open-book-magic-clip-art-hd-png-download.png" />
       </div>
     </div>
   );
