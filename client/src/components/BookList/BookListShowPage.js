@@ -5,7 +5,6 @@ import BookTile from "../Book/BookTile.js";
 const showBooksBookList = (props) => {
   const [books, setBooks] = useState([]);
   const [bookListName, setBookListName] = useState("");
-  const [bookLists, setBookLists] = useState([]);
   const bookListId = props.match.params.id;
 
   const getBookListName = async () => {
@@ -30,9 +29,7 @@ const showBooksBookList = (props) => {
   }, []);
 
   const bookTiles = books.map((book) => {
-    {
-      return <BookTile key={book.id} book={book} user={props.user} bookListId={book.bookListId} />;
-    }
+    return <BookTile key={book.id} book={book} user={props.user} bookListId={book.bookListId} />;
   });
 
   return (

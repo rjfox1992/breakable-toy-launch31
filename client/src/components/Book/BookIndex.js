@@ -28,7 +28,7 @@ const BookIndex = (props) => {
   }, []);
 
   const bookItems = books.map((book) => {
-    return <BookTile key={book.id} book={book} />;
+    return <BookTile key={book.id} book={book} user={props.user} />;
   });
 
   return (

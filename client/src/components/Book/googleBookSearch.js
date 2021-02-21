@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-
+import BookFrom from "./BookForm.js";
 import "../../assets/scss/main.scss";
+import BookForm from "./BookForm.js";
 
 const googleBookForm = (props) => {
   const [book, setBook] = useState("");
   const [result, setResult] = useState([]);
+
+  const [bookFormVisibility, setBookFormVisibility] = useState(false);
 
   const handleInputChange = (event) => {
     setBook(event.currentTarget.value);
@@ -12,7 +15,6 @@ const googleBookForm = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     getGoogleBooks(book);
-    // make a POST fetch request to GoogleBooksRouter
   };
 
   const getGoogleBooks = async (query) => {
@@ -28,6 +30,27 @@ const googleBookForm = (props) => {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+
+  const bookFormClick = () => {
+    if (!bookFormVisibility) {
+      setBookFormVisibility(true);
+    } else setBookFormVisibility(false);
+    console.log(bookFormVisibility);
+  };
+
+  let showBookForm = undefined;
+
+  if (bookFormVisibility) {
+    showBookForm = (
+      <div>
+        <BookForm />
+      </div>
+    );
+  }
+
+  // if (!bookFormVisibility) {
+  //   showBookForm = undefined;
+  // }
 
   const searchBookTiles = result.map((book) => {
     let imageCheck = <i>No image</i>;
@@ -51,11 +74,15 @@ const googleBookForm = (props) => {
             <h3>{book.volumeInfo.authors}</h3>
           </div>
         </div>
+        <button onClick={bookFormClick} className="button">
+          Add Book
+        </button>
       </div>
     );
   });
   const clearResults = () => {
     setResult([]);
+    setBookFormVisibility(false);
   };
 
   return (
@@ -78,6 +105,7 @@ const googleBookForm = (props) => {
           Clear Search
         </button>
       </form>
+      <div className="showBookForm">{showBookForm}</div>
       <div className="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3" key={book.id}>
         {searchBookTiles}
       </div>

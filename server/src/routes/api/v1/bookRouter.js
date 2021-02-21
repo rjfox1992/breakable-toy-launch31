@@ -24,10 +24,13 @@ bookRouter.get("/", async (req, res) => {
 
 bookRouter.get("/:id", async (req, res) => {
   try {
+    const currentUserId = req.user.id;
     const { id } = req.params;
     const book = await Book.query().findById(id);
+
     const serializedBook = await BookSerializer.getSummary(book);
-    return res.status(200).json({ book: serializedBook });
+
+    return res.status(200).json({ book: serializedBook, currentUserId });
   } catch (error) {
     return res.status(500).json({ error });
   }
@@ -36,12 +39,12 @@ bookRouter.get("/:id", async (req, res) => {
 bookRouter.post("/", async (req, res) => {
   const { body } = req;
   const formInput = cleanUserInput(body);
-  const { title, author } = formInput;
+  const { title, author, imageUrl } = formInput;
   const bookListId = req.body.bookListsId;
   const userId = req.user.id;
   debugger;
   try {
-    const newBook = await Book.query().insertAndFetch({ title, author, userId });
+    const newBook = await Book.query().insertAndFetch({ title, author, imageUrl, userId });
     const bookId = newBook.id;
     console.log(newBook);
     const serializedBook = await BookSerializer.getSummary(newBook);
@@ -51,12 +54,30 @@ bookRouter.post("/", async (req, res) => {
     debugger;
     return res.status(201).json({ book: serializedBook, newBookFavorite });
   } catch (error) {
-    console.log(error);
     if (error instanceof ValidationError) {
       return res.status(422).json({ errors: error.data });
     }
     // debugger;
     return res.status(500).json({ errors: error });
+  }
+});
+
+bookRouter.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const bookFav2Delete = await BookFavorites.query().where({ bookId: id });
+    const bookFav2DeleteId = bookFav2Delete[0].id;
+    await BookFavorites.query().deleteById(bookFav2DeleteId);
+    await Book.query().deleteById(id);
+    console.log("Book Deleted");
+    return res.status(201).json({ id });
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      return res.status(422).json({ errors: error.data });
+    }
+    console.error(error);
+    return res.status(500).json({ error: error });
   }
 });
 export default bookRouter;

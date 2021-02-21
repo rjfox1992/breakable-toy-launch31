@@ -38,6 +38,7 @@ const BookForm = (props) => {
         }),
         body: JSON.stringify(bookPayload),
       });
+      debugger;
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json();
@@ -59,14 +60,13 @@ const BookForm = (props) => {
 
   useEffect(() => {
     fetchBookLists();
-    if (shouldRedirect) {
-      return <Redirect to="/books" />;
-    }
   }, []);
-
+  if (shouldRedirect) {
+    return <Redirect to="/books" />;
+  }
   const availableBookLists = bookLists.map((bookList) => {
     return (
-      <option key={bookList.id} value={bookList.id}>
+      <option key={bookList.id} value={bookList.id} user={props.user}>
         {bookList.name}
       </option>
     );
@@ -82,6 +82,7 @@ const BookForm = (props) => {
     setBookRecord({
       name: "",
       description: "",
+      imageUrl: "",
       bookListsId: "",
     });
   };
