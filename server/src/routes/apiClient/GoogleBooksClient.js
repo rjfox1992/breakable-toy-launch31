@@ -1,4 +1,3 @@
-import axios from "axios";
 import got from "got";
 
 class googleBooksClient {
@@ -13,8 +12,6 @@ class googleBooksClient {
 
     const parsedBooksResponse = await JSON.parse(booksResponse.body);
     return parsedBooksResponse;
-
-    // const serializedBooksResponse = serializedBooksResponse(parsedBooksResponse);
   }
 
   serializedBooksResponse(parsedBooksResponse) {
@@ -33,23 +30,5 @@ class googleBooksClient {
     });
     return serializedBooks;
   }
-  // static async getSearch() {
-  //   try {
-  //     axios
-  //       .get(
-  //         "https://www.googleapis.com/books/v1/volumes?q=" +
-  //           book +
-  //           "&key=" +
-  //           googleBooksApiKey +
-  //           "&maxResults=40"
-  //       )
-  //       .then((data) => {
-  //         debugger;
-  //         console.log(data.data.items);
-  //       });
-  //   } catch (error) {
-  //     return error.message;
-  //   }
-  // }
 }
 export default googleBooksClient;

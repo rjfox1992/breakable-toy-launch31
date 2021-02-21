@@ -40,7 +40,11 @@ body {
   text-align: center !important;
   opacity: 0.85;
 }
-
+.book-showPage {
+  width: 350px;
+  margin: 30px;
+  object-position: center;
+}
 img {
   display: block;
   margin-left: auto;

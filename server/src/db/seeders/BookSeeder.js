@@ -14,8 +14,7 @@ class BookListSeeder {
       title: "The Cereal Killer",
       author: "Capt. Horatio P. Crunch",
       userId: 2,
-      imageUrl:
-        "https://static.wikia.nocookie.net/p__/images/d/d0/Cap%27n_Crunch.jpg/revision/latest/scale-to-width-down/340?cb=20120716233144&path-prefix=protagonist",
+      imageUrl: "https://pbs.twimg.com/profile_images/546038407286108160/T-2S-1uV_400x400.jpeg",
     });
     const book3 = await Book.query().insertAndFetch({
       title: "Laugh the Pain Away",
