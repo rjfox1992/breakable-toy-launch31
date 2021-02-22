@@ -35,7 +35,10 @@ app.use(
 app.use(bodyParser.json());
 addMiddlewares(app);
 app.use(rootRouter);
-app.listen(configuration.web.port, configuration.web.host, () => {
+// app.listen(configuration.web.port, configuration.web.host, () => {
+//   console.log("Server is listening...");
+// });
+app.listen(process.env.PORT || 3000, () => {
   console.log("Server is listening...");
 });
 export default app;
