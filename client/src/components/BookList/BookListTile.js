@@ -6,7 +6,7 @@ const BookListTile = ({ bookList, user }) => {
     <div className="cell">
       <div className="card  BookList-tile">
         <Link to={`/BookLists/${bookList.id}`}>
-          <div className="card-divider text-center">{bookList.name}</div>
+          <div className="card-divider">{bookList.name}</div>
           <div className="card-section">
             <img src={bookList.imageUrl} />
           </div>
