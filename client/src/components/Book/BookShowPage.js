@@ -47,7 +47,7 @@ const BookShowPage = (props) => {
   }
 
   return (
-    <div className="book-showPage centered">
+    <div className="book-showPage">
       <BookTile key={bookId} book={book} user={currentUser} />
       {editDeleteButtons}
     </div>

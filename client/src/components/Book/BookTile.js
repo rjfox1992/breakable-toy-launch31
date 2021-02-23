@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const BookTile = ({ book }) => {
   return (
-    <div className="cell">
+    <div className="cell align-center ">
       <div className="card text-center Book-tile">
         <div className="card-divider">
           <h1>{book.title}</h1>

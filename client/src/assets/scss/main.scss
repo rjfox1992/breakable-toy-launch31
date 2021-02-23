@@ -40,10 +40,8 @@ body {
   text-align: center !important;
   opacity: 0.85;
 }
-.book-showPage {
-  width: 350px;
-  margin: 30px;
-  object-position: center;
+.card-section {
+  object-fit: scale-down;
 }
 img {
   display: block;
@@ -62,30 +60,29 @@ img {
 }
 
 .BookList-tile {
-  width: 20vw auto;
-  height: 20vw auto;
+  width: 50%;
+  height: auto;
   border-radius: 5%;
+  object-fit: scale-down;
+  object-position: 50% 50%;
 }
 .Book-tile {
-  width: 20vw auto;
-  height: 20vw auto;
+  width: 300px;
+  height: 500px auto;
   border-radius: 5%;
-  object-fit: none;
+  object-fit: scale-down;
   object-position: 50% 50%;
 }
 
-.centered {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .tile-Image {
   height: auto;
   max-width: 100%;
 }
 
 .book-showPage {
-  object-fit: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #new-book-form {
   width: 800px;
@@ -110,4 +107,8 @@ img {
 .input-field {
   margin: 10px;
   width: 90%;
+}
+
+.menu-text {
+  justify-content: space-between;
 }
