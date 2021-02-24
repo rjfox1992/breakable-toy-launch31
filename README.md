@@ -6,7 +6,7 @@ BookMarked
 
 
 ## Demo (images, links, live demos) ##
-[BookMarked Heroku Link](https://breakable-toy-launch31.herokuapp.com/)
+
 
 [BookMarked ER Diagram](https://lucid.app/lucidchart/invitations/accept/76277534-fe05-487b-8d40-082d90177bb6)
 ## Technologies Used ##
@@ -24,7 +24,7 @@ Postgres, Express, React, Node stack; heroku; Cypress, Foundation;
 5. yarn run dev
 6. Navigate to localhost:3000/
 ## Heroku Link ##
-**https:**
+**https://breakable-toy-launch31.herokuapp.com/**
 ## Contributors ##
 * Ryan Fox
 * Andrew Magown - Came up with the Name
