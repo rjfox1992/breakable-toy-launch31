@@ -1,3 +1,4 @@
+import { render } from "node-sass";
 import React, { useState, useReducer } from "react";
 
 import "../../assets/scss/main.scss";
@@ -36,15 +37,6 @@ const googleBookForm = (props) => {
     }
   };
 
-  let showBookForm = undefined;
-
-  if (bookFormVisibility) {
-    showBookForm = (
-      <div>
-        <AddGoogleBookForm value={bookFormRecord} />
-      </div>
-    );
-  } else showBookForm = undefined;
   const fetchBookData = async (query) => {
     try {
       const response = await fetch(`/api/v1/googleSearch/?q=${query}`);
@@ -62,24 +54,46 @@ const googleBookForm = (props) => {
       let title = body.googleBooksResults.items[0].volumeInfo.title;
       let author = body.googleBooksResults.items[0].volumeInfo.authors[0];
       let imageUrl = body.googleBooksResults.items[0].volumeInfo.imageLinks.thumbnail;
+
       setBookFormRecord({ ...bookFormRecord, title, author, imageUrl, bookList: "" });
+      console.log(bookFormRecord);
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+
+  let showBookForm = undefined;
+  const toggleBookForm = () => {
+    setBookFormVisibility(!bookFormVisibility);
+  };
+  if (bookFormVisibility) {
+    debugger;
+    showBookForm = (
+      <div id="form">
+        <AddGoogleBookForm
+          key={bookFormVisibility}
+          bookFormVisibility={bookFormVisibility}
+          toggleBookForm={toggleBookForm}
+          value={bookFormRecord}
+        />
+      </div>
+    );
+    // ReactDOM.render(element, document.getElementById("form"));
+  } else showBookForm = undefined;
+
   const searchBookTiles = result.map((book) => {
     let imageCheck = <i>No image</i>;
 
     if (book.volumeInfo.imageLinks) {
       imageCheck = <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />;
     }
+
     const bookFormClick = (event) => {
       event.preventDefault();
-      if (!bookFormVisibility) {
-        const query = event.currentTarget.value;
-        fetchBookData(query);
-        setBookFormVisibility(true);
-      } else setBookFormVisibility(false);
+      const query = event.currentTarget.value;
+      fetchBookData(query);
+
+      toggleBookForm();
     };
 
     return (

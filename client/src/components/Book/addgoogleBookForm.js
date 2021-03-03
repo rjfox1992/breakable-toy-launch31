@@ -39,7 +39,6 @@ const BookForm = (props) => {
         }),
         body: JSON.stringify(bookPayload),
       });
-      debugger;
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json();

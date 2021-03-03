@@ -4,9 +4,9 @@ import ErrorList from "../ErrorList.js";
 import translateServerErrors from "../../services/translateServerErrors.js";
 
 const BookForm = (props) => {
-  debugger;
+  console.log(props);
   const [bookRecord, setBookRecord] = useState({
-    title: "" || props,
+    title: "",
     author: "",
     imageUrl: "",
     bookList: "",
