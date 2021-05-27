@@ -24,7 +24,7 @@ Postgres, Express, React, Node stack; heroku; Cypress, Foundation;
 5. yarn run dev
 6. Navigate to localhost:3000/
 ## Heroku Link ##
-**https://breakable-toy-launch31.herokuapp.com/**
+**https://bookmarked-launch-31.herokuapp.com/**
 ## Contributors ##
 * Ryan Fox
 * Andrew Magown - Came up with the Name
