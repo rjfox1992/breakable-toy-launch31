@@ -10,8 +10,6 @@ BookMarked
 
 [BookMarked ER Diagram](https://lucid.app/lucidchart/invitations/accept/76277534-fe05-487b-8d40-082d90177bb6)
 ## Technologies Used ##
-
-## Technologies Used ##
 Postgres, Express, React, Node stack; heroku; Cypress, Foundation;
 
 ## Special Gotchas (problems faced, unique elements) ##
